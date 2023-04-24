@@ -35,7 +35,7 @@ def convert_video_to_png():
             # Redimensionar o quadro para a resolução desejada
             resized_frame = cv2.resize(frame, (width, height))
             # Salvar a imagem como um arquivo PNG com o nome desejado
-            file_name = f"{name}_{i:04}.png"
+            file_name = f"{name}-{i:1}.png"
             # Cria o caminho completo do arquivo de saída
             output_file_path = f"{directory_path_var.get()}/{file_name}"
             # Salva o arquivo de saída no diretório selecionado
