@@ -16,7 +16,8 @@ def convert_video_to_png():
     file_path = video_path.get()
     resolution = resolution_entry.get()
     name = name_entry.get()
-    if not resolution or not name:
+    directory_path = directory_path_var.get()
+    if not resolution or not name or not directory_path:
         error_label.config(text="Por favor, preencha os campos de resolução e nome. e não se esqueça de escolher um diretorio", fg="red")
         return
     else:
@@ -27,6 +28,8 @@ def convert_video_to_png():
     video = cv2.VideoCapture(file_path)
     frame_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
     for i in range(frame_count):
+        status_label = tk.Label(main_frame, text="", font=("Arial", 12), fg="green", bg="#f0f0f0")
+        status_label.pack(side="bottom", pady=10)
         ret, frame = video.read()
         if ret:
             # Redimensionar o quadro para a resolução desejada
@@ -37,7 +40,10 @@ def convert_video_to_png():
             output_file_path = f"{directory_path_var.get()}/{file_name}"
             # Salva o arquivo de saída no diretório selecionado
             cv2.imwrite(output_file_path, resized_frame)
+            status_label.config(text="Conversão concluída!")
     video.release()
+    
+
 
 
 # Crie a interface do usuário com campos para inserir a resolução e o nome do arquivo
@@ -62,6 +68,15 @@ resolution_entry = tk.Entry(main_frame, font=("Arial", 12), justify="center")
 name_label = tk.Label(main_frame, text="Nome do arquivo:", font=("Arial", 12), bg="#f0f0f0")
 name_entry = tk.Entry(main_frame, font=("Arial", 12), justify="center")
 
+# Adiciona a verificação para a entrada da resolução
+def check_resolution_entry():
+    resolution = resolution_entry.get()
+    if not resolution or "x" not in resolution:
+        error_label.config(text="Por favor, insira a resolução no formato correto (ex: 640x480)", fg="red")
+    else:
+        error_label.config(text="")
+resolution_entry.bind("<FocusOut>", lambda event: check_resolution_entry())
+
 # Cria o botão de seleção de arquivo
 video_path = tk.StringVar()
 error_label = tk.Label(main_frame, text="", font=("Arial", 12), fg="red", bg="#f0f0f0")
@@ -70,6 +85,7 @@ button_frame = tk.Frame(main_frame, bg="#f0f0f0")
 button_frame.pack(fill="x", pady=20)
 select_button = tk.Button(button_frame, text="Selecione o vídeo", font=("Arial", 12), bg="#2196f3", fg="white", command=select_file, pady=5, padx=5)
 select_button.pack(fill="x", padx=5, pady=5) 
+
 
 # Função que abre a janela de seleção de diretório
 def select_directory():

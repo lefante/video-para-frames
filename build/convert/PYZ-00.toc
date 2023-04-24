@@ -1,4 +1,4 @@
-('C:\\Users\\Roka Shibasaki\\Downloads\\project\\build\\convert\\PYZ-00.pyz',
+('C:\\Users\\Roka Shibasaki\\video-para-frames\\build\\convert\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\Roka '
    'Shibasaki\\AppData\\Local\\Programs\\Python\\Python310\\lib\\__future__.py',
