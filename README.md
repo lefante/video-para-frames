@@ -39,8 +39,3 @@ um programa que transforma videos em png
 -o nome dos frames vão ser salvos numericamente de acordo com o nome escolhido (ex: "bananinha-1.png")
 
 -escolha a resolução digitando sempre com um "x" entre a largura e altura (ex: 480x680)
-
-
-## Licença
-
--Projeto opensource e é isso façam o que queiram
