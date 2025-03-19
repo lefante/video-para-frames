@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import filedialog, ttk
 from PIL import Image, ImageTk
 import threading
+import winreg
 
 def show_video_preview():
     file_path = video_path.get()
@@ -207,5 +208,14 @@ error_label.grid(row=11, column=0, columnspan=2, sticky="ew", padx=10, pady=5)
 
 status_label = tk.Label(main_frame, text="", fg="green", bg="#2d2d2d", font=("Arial", 12))
 status_label.grid(row=12, column=0, columnspan=2, sticky="ew", padx=10, pady=5)
+
+try:
+        registry_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize")
+        theme_value, _ = winreg.QueryValueEx(registry_key, "AppsUseLightTheme")
+        if theme_value == 1:
+            toggle_theme()
+except WindowsError:
+    print(f"Erro ao acessar o registro do windows: {WindowsError}")
+
 
 root.mainloop()
