@@ -7,7 +7,6 @@ um programa que transforma videos em png
 - [Requisitos](#requisitos)
 - [Instalação](#instalação)
 - [Uso](#uso)
-- [Licença](#licença)
 
 
 
